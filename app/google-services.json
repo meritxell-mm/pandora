@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1022760537722",
+    "firebase_url": "https://renematisse-655f4.firebaseio.com",
+    "project_id": "renematisse-655f4",
+    "storage_bucket": "renematisse-655f4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1022760537722:android:78169a51db3a4392",
+        "android_client_info": {
+          "package_name": "org.acnouletx.pandora"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1022760537722-9082jm1t5c4gjiu3g5dujo3ang01nj1v.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "org.acnouletx.pandora",
+            "certificate_hash": "78a5374c4cd311bf620addbef1e5cd7d64f17146"
+          }
+        },
+        {
+          "client_id": "1022760537722-150d1lctqo9o70si1vlgmsdu7ig7r6ir.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAVHD8orljkBsG0LWT5_n9hGm80bD8ZZjc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1022760537722-150d1lctqo9o70si1vlgmsdu7ig7r6ir.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
