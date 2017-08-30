@@ -4,4 +4,5 @@
     <dimen name="item_box_padding">10dp</dimen>
     <dimen name="radius">10dp</dimen>
     <dimen name="elevation">8dp</dimen>
+    <dimen name="progress_loading">40dp</dimen>
 </resources>

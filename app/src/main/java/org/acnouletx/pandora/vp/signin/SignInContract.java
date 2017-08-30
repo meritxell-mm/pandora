@@ -1,7 +1,16 @@
 package org.acnouletx.pandora.vp.signin;
 
+import android.app.Activity;
+import android.content.Context;
+import android.support.v4.app.FragmentActivity;
+
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.firebase.auth.FirebaseUser;
+
 import org.acnouletx.pandora.baseview.BasePresenter;
 import org.acnouletx.pandora.baseview.BaseView;
+import org.acnouletx.pandora.model.User;
 
 /**
  * Created by txelly on 28/08/17.
@@ -10,10 +19,21 @@ import org.acnouletx.pandora.baseview.BaseView;
 public interface SignInContract {
 
         interface View extends BaseView<SignInContract.Presenter> {
+            void goToMain(User user);
+
+            void showError();
+
+            void setLoading(boolean loading);
         }
 
         interface Presenter extends BasePresenter {
-            void newUser(String username);
+
+            void firebaseAuthWithGoogle(GoogleSignInAccount acct);
+
+            void setGoogleLogin(FragmentActivity activity,
+                                GoogleApiClient.OnConnectionFailedListener listener);
+
+            GoogleApiClient getGoogleApiClient();
         }
 
 }

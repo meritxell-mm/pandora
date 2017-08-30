@@ -1,20 +1,25 @@
 package org.acnouletx.pandora.model;
 
-import org.acnouletx.pandora.model.utils.PojoUtils;
+import com.google.firebase.database.DataSnapshot;
 
+import org.acnouletx.pandora.model.utils.PojoUtils;
+import org.acnouletx.pandora.utils.Constants;
+
+import java.io.Serializable;
 import java.util.UUID;
 
 /**
  * Created by txelly on 24/08/17.
  */
 
-public class Member {
+public class Member implements Serializable, Constants{
 
     private String id;
     private String name;
     private String userId;
     private String thumb;
     private String pic;
+    private String email;
     private int totalFriends;
     private int totalCreatedBoxes;
     private int totalInvitedBoxes;
@@ -22,9 +27,26 @@ public class Member {
     private PojoUtils.MOOD mood;
     private PojoUtils.IS_FRIEND isFriend;
 
-    public Member(String username) {
+    public Member(String email) {
         id= getUserId();
-        name=username;
+        this.email= email;
+    }
+
+    public Member(DataSnapshot value) {
+
+        id=(String) value.child(ID).getValue();
+        name=(String) value.child(NAME).getValue();
+        userId=(String) value.child(USER_ID).getValue();
+        thumb=(String) value.child(THUMB).getValue();
+        pic=(String) value.child(PIC).getValue();
+        email=(String) value.child(EMAIL).getValue();
+        totalFriends = ((Long) value.child(TOTAL_FRIENDS).getValue()).intValue();
+        totalCreatedBoxes = ((Long) value.child(TOTAL_CREATED_BOXES).getValue()).intValue();
+        totalInvitedBoxes = ((Long) value.child(TOTAL_INVITED_BOXES).getValue()).intValue();
+        totalPosts = ((Long) value.child(TOTAL_POSTS).getValue()).intValue();
+        mood=(PojoUtils.MOOD) value.child(MOOD).getValue();
+        isFriend=(PojoUtils.IS_FRIEND) value.child(IS_FRIEND).getValue();
+
     }
 
     public String getId() {
@@ -116,5 +138,13 @@ public class Member {
 
     public void setMood(PojoUtils.MOOD mood) {
         this.mood = mood;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }
