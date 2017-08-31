@@ -57,6 +57,7 @@ public class CompleteUserActivity extends BaseActivity implements CompleteUserCo
             mPresenter.checkUsername(text.toString());
         } else {
             mCheckName.setChecked(false);
+            mDone.setEnabled(false);
         }
     }
 
