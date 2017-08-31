@@ -1,6 +1,5 @@
 package org.acnouletx.pandora.vp.signin;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -33,20 +32,17 @@ import butterknife.OnClick;
 public class SignInActivity extends BaseActivity implements SignInContract.View,
         GoogleApiClient.OnConnectionFailedListener {
 
-    private static final String TAG= SignInActivity.class.getName();
-
-    private SignInContract.Presenter mPresenter;
-
+    private static final String TAG = SignInActivity.class.getName();
     @BindView(R.id.signin_loading)
     ProgressBar mLoading;
     @BindView(R.id.signin_button_google)
     SignInButton mGoogleButton;
+    private SignInContract.Presenter mPresenter;
 
    /* @BindView(R.id.signin_edittext)
     EditText mUsername;
     @BindView(R.id.signin_textinput)
     TextInputLayout mInput;*/
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +56,7 @@ public class SignInActivity extends BaseActivity implements SignInContract.View,
     }
 
     @OnClick(R.id.signin_button_google)
-    public void onClickGoogleButton(){
+    public void onClickGoogleButton() {
         Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mPresenter.getGoogleApiClient());
         startActivityForResult(signInIntent, RC_SIGN_IN_GOOGLE);
     }
@@ -95,10 +91,10 @@ public class SignInActivity extends BaseActivity implements SignInContract.View,
 
     @Override
     public void setLoading(boolean loading) {
-        if(loading){
+        if (loading) {
             mGoogleButton.setVisibility(View.GONE);
             mLoading.setVisibility(View.VISIBLE);
-        }else{
+        } else {
             mLoading.setVisibility(View.GONE);
             mGoogleButton.setVisibility(View.VISIBLE);
         }
@@ -139,6 +135,6 @@ public class SignInActivity extends BaseActivity implements SignInContract.View,
 
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-//TODO notify
+        showError();
     }
 }

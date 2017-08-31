@@ -1,12 +1,9 @@
 package org.acnouletx.pandora.vp.signin;
 
-import android.app.Activity;
-import android.content.Context;
 import android.support.v4.app.FragmentActivity;
 
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.firebase.auth.FirebaseUser;
 
 import org.acnouletx.pandora.baseview.BasePresenter;
 import org.acnouletx.pandora.baseview.BaseView;

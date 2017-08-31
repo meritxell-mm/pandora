@@ -12,10 +12,11 @@ import java.util.UUID;
  * Created by txelly on 24/08/17.
  */
 
-public class Member implements Serializable, Constants{
+public class Member implements Serializable, Constants {
 
     private String id;
     private String name;
+    private String username;
     private String userId;
     private String thumb;
     private String pic;
@@ -29,23 +30,24 @@ public class Member implements Serializable, Constants{
 
     public Member(String email) {
         id= getUserId();
-        this.email= email;
+        this.email = email;
     }
 
     public Member(DataSnapshot value) {
 
-        id=(String) value.child(ID).getValue();
-        name=(String) value.child(NAME).getValue();
-        userId=(String) value.child(USER_ID).getValue();
-        thumb=(String) value.child(THUMB).getValue();
-        pic=(String) value.child(PIC).getValue();
-        email=(String) value.child(EMAIL).getValue();
+        id = (String) value.child(ID).getValue();
+        name = (String) value.child(NAME).getValue();
+        username = (String) value.child(USERNAME).getValue();
+        userId = (String) value.child(USER_ID).getValue();
+        thumb = (String) value.child(THUMB).getValue();
+        pic = (String) value.child(PIC).getValue();
+        email = (String) value.child(EMAIL).getValue();
         totalFriends = ((Long) value.child(TOTAL_FRIENDS).getValue()).intValue();
         totalCreatedBoxes = ((Long) value.child(TOTAL_CREATED_BOXES).getValue()).intValue();
         totalInvitedBoxes = ((Long) value.child(TOTAL_INVITED_BOXES).getValue()).intValue();
         totalPosts = ((Long) value.child(TOTAL_POSTS).getValue()).intValue();
-        mood=(PojoUtils.MOOD) value.child(MOOD).getValue();
-        isFriend=(PojoUtils.IS_FRIEND) value.child(IS_FRIEND).getValue();
+        mood = (PojoUtils.MOOD) value.child(MOOD).getValue();
+        isFriend = (PojoUtils.IS_FRIEND) value.child(IS_FRIEND).getValue();
 
     }
 
@@ -57,12 +59,12 @@ public class Member implements Serializable, Constants{
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getUserId() {
@@ -146,5 +148,13 @@ public class Member implements Serializable, Constants{
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

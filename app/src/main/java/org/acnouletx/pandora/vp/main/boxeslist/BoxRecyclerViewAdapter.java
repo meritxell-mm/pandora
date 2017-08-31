@@ -1,4 +1,4 @@
-package org.acnouletx.pandora.vp.main;
+package org.acnouletx.pandora.vp.main.boxeslist;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;

@@ -2,7 +2,8 @@
     <string name="app_name">Pandora</string>
     <string name="username">Username</string>
     <string name="sign_in">Sign in</string>
-    <string name="signin_error_empty_username">Empty username</string>
     <string name="action_add_box">Add box</string>
-    <string name="sign_in_error_auth_failed">Authentification failed</string>
+    <string name="sign_in_error_auth_failed">Authentication failed</string>
+    <string name="action_done">Done</string>
+    <string name="name">Your complete name</string>
 </resources>

@@ -25,15 +25,14 @@ import com.google.firebase.database.ValueEventListener;
 
 import org.acnouletx.pandora.R;
 import org.acnouletx.pandora.model.User;
-import org.acnouletx.pandora.vp.signin.SignInContract.Presenter;
 
 /**
  * Created by txelly on 28/08/17.
  */
 
-public class SignInPresenter implements Presenter{
+public class SignInPresenter implements SignInContract.Presenter {
 
-    private static final String TAG= SignInPresenter.class.getName();
+    private static final String TAG = SignInPresenter.class.getName();
 
     private static SignInPresenter SIGN_IN_PRESENTER;
 
@@ -42,7 +41,6 @@ public class SignInPresenter implements Presenter{
 
     private static SignInContract.View mView;
     private GoogleApiClient mGoogleApiClient;
-
 
 
     public static SignInPresenter getInstance(SignInContract.View view) {
@@ -80,18 +78,53 @@ public class SignInPresenter implements Presenter{
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
                     Log.i(TAG, dataSnapshot.toString());
-                    User user= new User(dataSnapshot.getChildren().iterator().next());
+                    User user = new User(dataSnapshot.getChildren().iterator().next());
                     mView.goToMain(user);
-                }else{
+                } else {
                     newUser(email, token);
                 }
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-//TODO
+                mView.setLoading(false);
+                mView.showError();
             }
         });
+    }
+
+    private static void getToken(final FirebaseUser user) {
+        user.getToken(true)
+                .addOnCompleteListener(new OnCompleteListener<GetTokenResult>() {
+                    public void onComplete(@NonNull Task<GetTokenResult> task) {
+                        if (task.isSuccessful()) {
+                            String idToken = task.getResult().getToken();
+                            Log.i(TAG, "onComplete: " + idToken);
+                            getUserInfo(user.getEmail(), idToken);
+                        } else {
+                            mView.showError();
+                            // Handle error -> task.getException();
+                        }
+                    }
+                });
+    }
+
+    private static void newUser(final String email, final String token) {
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference db = database.getReference(USERS);
+
+        User user = new User(email, token);
+
+        db.child(user.getId()).setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                getUserInfo(email, token);
+            }
+        });
+    }
+
+    public static void setView(SignInContract.View view) {
+        mView = view;
     }
 
     @Override
@@ -126,22 +159,6 @@ public class SignInPresenter implements Presenter{
                 });
     }
 
-    private static void getToken(final FirebaseUser user) {
-        user.getToken(true)
-                .addOnCompleteListener(new OnCompleteListener<GetTokenResult>() {
-                    public void onComplete(@NonNull Task<GetTokenResult> task) {
-                        if (task.isSuccessful()) {
-                            String idToken = task.getResult().getToken();
-                            Log.i(TAG, "onComplete: "+idToken);
-                            getUserInfo(user.getEmail(), idToken);
-                        } else {
-                            mView.showError();
-                            // Handle error -> task.getException();
-                        }
-                    }
-                });
-    }
-
     @Override
     public void setGoogleLogin(FragmentActivity activity, GoogleApiClient.OnConnectionFailedListener listener) {
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -160,23 +177,5 @@ public class SignInPresenter implements Presenter{
     @Override
     public GoogleApiClient getGoogleApiClient() {
         return mGoogleApiClient;
-    }
-
-    private static void newUser(final String email, final String token) {
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference db = database.getReference(USERS);
-
-        User user= new User(email, token);
-
-        db.child(user.getId()).setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                getUserInfo(email, token);
-            }
-        });
-    }
-
-    public static void setView(SignInContract.View view) {
-        mView= view;
     }
 }

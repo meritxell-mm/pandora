@@ -1,7 +1,5 @@
 package org.acnouletx.pandora.utils;
 
-import org.acnouletx.pandora.model.utils.PojoUtils;
-
 /**
  * Created by txelly on 28/08/17.
  */
@@ -9,16 +7,20 @@ import org.acnouletx.pandora.model.utils.PojoUtils;
 public interface Constants {
 
     //INTENT KEYS
-    String USERNAME = "username";
     String USER = "user";
 
-    /**DB TABLES**/
+    /**
+     * DB TABLES
+     **/
     String USERS = "users";
 
-    /**DB KEYS**/
+    /**
+     * DB KEYS
+     **/
     //USER
     String ID = "id";
     String NAME = "name";
+    String USERNAME = "username";
     String USER_ID = "userId";
     String THUMB = "thumb";
     String PIC = "pic";
@@ -30,7 +32,7 @@ public interface Constants {
     String MOOD = "mood";
     String IS_FRIEND = "isFriend";
     String PASSWORD_TOKEN = "passwordToken";
-    String PUSH_TOKEN="pushToken";
+    String PUSH_TOKEN = "pushToken";
     String BOXES = "boxes";
 
 

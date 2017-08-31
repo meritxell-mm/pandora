@@ -1,4 +1,4 @@
-package org.acnouletx.pandora.vp.main;
+package org.acnouletx.pandora.vp.main.boxeslist;
 
 /**
  * Created by txelly on 28/08/17.

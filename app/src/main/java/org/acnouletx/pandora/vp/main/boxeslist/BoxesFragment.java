@@ -1,4 +1,4 @@
-package org.acnouletx.pandora.vp.main;
+package org.acnouletx.pandora.vp.main.boxeslist;
 
 import android.content.Context;
 import android.os.Bundle;
