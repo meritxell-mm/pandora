@@ -6,6 +6,9 @@ import android.view.MenuItem;
 
 import com.google.firebase.auth.FirebaseAuth;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 import org.acnouletx.pandora.R;
 import org.acnouletx.pandora.baseview.BaseActivity;
 import org.acnouletx.pandora.model.Box;
@@ -18,12 +21,11 @@ public class MainActivity extends BaseActivity {
 
     private WeakReference<BoxesFragment> mFragment;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //TODO in a presenter?
-        if (FirebaseAuth.getInstance().getCurrentUser() == null) {
+        if(FirebaseAuth.getInstance().getCurrentUser()==null){
             startActivity(new Intent(this, SignInActivity.class));
         }
         setContentView(R.layout.activity_main);
@@ -45,6 +47,14 @@ public class MainActivity extends BaseActivity {
     public void onBackPressed() {
         super.onBackPressed();
         if (mFragment.get() instanceof BoxesFragment) {
+            finish();
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        if(mFragment.get() instanceof BoxesFragment){
             finish();
         }
     }

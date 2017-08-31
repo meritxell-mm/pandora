@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:orientation="vertical" android:gravity="center" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/holo_orange_dark">
 
-    <android.support.design.widget.TextInputLayout
+    <!--android.support.design.widget.TextInputLayout
         android:id="@+id/signin_textinput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -20,6 +21,19 @@
         android:id="@+id/signin_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/sign_in"/>
+        android:text="@string/sign_in"/!-->
+
+    <com.google.android.gms.common.SignInButton
+        android:id="@+id/signin_button_google"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <ProgressBar
+        android:id="@+id/signin_loading"
+        android:visibility="gone"
+        android:layout_width="@dimen/progress_loading"
+        android:layout_height="@dimen/progress_loading"
+        android:layout_gravity="center"/>
 
 </LinearLayout>

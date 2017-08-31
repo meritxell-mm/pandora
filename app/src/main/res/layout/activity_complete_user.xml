@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:padding="@dimen/padding"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="0dp"
+        android:layout_weight="6"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/username"
+            android:id="@+id/completeuser_edittext_username" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:layout_height="match_parent">
+
+    <ToggleButton
+        android:id="@+id/completeuser_toggle_checkname"
+        android:layout_width="@dimen/icon"
+        android:layout_height="@dimen/icon"
+        android:background="@drawable/selector_name_check"
+        android:textOff=""
+        android:textOn="" />
+    </RelativeLayout>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/completeuser_button_done"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/action_done"
+        android:layout_alignParentBottom="true"/>
+
+</RelativeLayout>
